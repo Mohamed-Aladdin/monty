@@ -9,11 +9,12 @@
 void read_input(void)
 {
 	char *opc, *data;
-	ssize_t line;
+	ssize_t line = 1;
 	size_t n = 0;
 
-	while (line = getline(&driver.ip, &n, driver.file) != -1)
+	while (line != -1)
 	{
+		line = getline(&driver.ip, &n, driver.file);
 		opc = strtok(driver.ip, " ");
 
 		if (*opc == '\n' || *opc == '#')
@@ -44,37 +45,37 @@ void read_input(void)
  * Return: Void.
  */
 
-void exec_opc(stack_t **stack, char *opc)
+void exec_opc(stack_t **h, char *opc)
 {
 	char *ops;
 	int i;
 
 	instruction_t op_fns[] = {
-		{"pall", pall},
-		{"pint", pint},
-		{"pop", pop},
-		{"swap", swap},
-		{"add", add},
-		{"nop", nop},
-		{"sub", sub},
-		{"div", div_op},
-		{"mul", mul},
-		{"mod", mod},
-		{"pchar", pchar},
-		{"pstr", pstr},
-		{"rotl", rotl},
-		{"rotr", rotr},
-		{"stack", stack_op},
-		{"queue", queue_op},
+		{"pall", m_pall},
+		{"pint", m_pint},
+		{"pop", m_pop},
+		{"swap", m_swap},
+		{"add", m_add},
+		{"nop", m_nop},
+		{"sub", m_sub},
+		{"div", m_div},
+		{"mul", m_mul},
+		{"mod", m_mod},
+		{"pchar", m_pchar},
+		{"pstr", m_pstr},
+		{"rotl", m_rotl},
+		{"rotr", m_rotr},
+		{"stack", m_stack},
+		{"queue", m_queue},
 		{NULL, NULL}
-	}
+	};
 	ops = strtok(opc, "\n\t");
 
 	for (i = 0; op_fns[i].opcode; i++)
 	{
 		if (strcmp(ops, op_fns[i].opcode) == 0)
 		{
-			op_fns[i].f(stack, driver.ipn);
+			op_fns[i].f(h, driver.ipn);
 			return;
 		}
 	}

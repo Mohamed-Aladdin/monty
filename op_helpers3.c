@@ -1,3 +1,5 @@
+#include "monty.h"
+
 /**
  * m_rotr - rotates the stack to the bottom.
  * @h: The given stack.

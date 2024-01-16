@@ -9,6 +9,9 @@
 
 void m_push(char *arg)
 {
+	stack_t *node;
+	int data;
+
 	if (!verify_input(arg))
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", driver.ipn);

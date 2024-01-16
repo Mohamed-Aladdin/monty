@@ -1,6 +1,8 @@
 #ifndef _MONTY_H_
 #define _MONTY_H_
 
+#define  _POSIX_C_SOURCE 200809L
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -66,7 +68,7 @@ extern driver_t driver;
 bool verify_input(char *line);
 void init_driver(void);
 void clean_up(void);
-void clean_stack(stack_t *h);
+void clean_stack(stack_t *stack);
 void read_input(void);
 void exec_opc(stack_t **h, char *opc);
 
@@ -91,5 +93,7 @@ void m_sub(stack_t **h, __attribute__((unused))unsigned int ipn);
 void m_div(stack_t **h, __attribute__((unused))unsigned int ipn);
 void m_mul(stack_t **h, __attribute__((unused))unsigned int ipn);
 void m_mod(stack_t **h, __attribute__((unused))unsigned int ipn);
+void m_rotl(stack_t **h, __attribute__((unused))unsigned int ipn);
+void m_rotr(stack_t **h, __attribute__((unused))unsigned int ipn);
 
 #endif /* _MONTY_H_ */

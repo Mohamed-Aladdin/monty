@@ -1,13 +1,14 @@
 #include "monty.h"
 
+driver_t driver;
 /**
- * check_input - check the input line.
+ * verify_input - check the input line.
  * @line: The given argument string.
  *
  * Return: true or false
  */
 
-bool check_input(char *line)
+bool verify_input(char *line)
 {
 	int i;
 
@@ -48,7 +49,7 @@ void clean_up(void)
 {
 	fclose(driver.file);
 	free(driver.ip);
-	free_build(driver.stack);
+	clean_stack(driver.stack);
 }
 
 /**
@@ -58,7 +59,7 @@ void clean_up(void)
  * Return: Void.
  */
 
-void clean_stack(stack_t stack)
+void clean_stack(stack_t *stack)
 {
 	stack_t *tmp;
 	stack_t *pos = stack;

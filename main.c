@@ -9,8 +9,6 @@
 
 int main(int argc, char **argv)
 {
-	FILE file;
-
 	init_driver();
 
 	if (argc != 2)
