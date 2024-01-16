@@ -73,6 +73,8 @@ void exec_opc(stack_t **h, char *opc);
 /* Display Tasks Functions */
 void m_pall(stack_t **h, __attribute__((unused))unsigned int ipn);
 void m_pint(stack_t **h, __attribute__((unused))unsigned int ipn);
+void m_pchar(stack_t **h, __attribute__((unused))unsigned int ipn);
+void m_pstr(stack_t **h, __attribute__((unused))unsigned int ipn);
 
 /* Operation Tasks Functions */
 void m_push(char *arg);
