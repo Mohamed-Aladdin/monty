@@ -26,9 +26,9 @@ void read_input(void)
 			data = strtok(NULL, " \n");
 
 			if (driver.is_queue)
-				push_queue(data);
+				m_pushq(data);
 			else
-				push(data);
+				m_push(data);
 		}
 		else
 			exec_opc(&driver.stack, opc);

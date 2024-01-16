@@ -63,12 +63,16 @@ typedef struct driver_s
 extern driver_t driver;
 
 /* Main Helpers */
-bool check_input(char *line);
+bool verify_input(char *line);
 void init_driver(void);
 void clean_up(void);
 void clean_stack(stack_t *h);
 void read_input(void);
 void exec_opc(stack_t **h, char *opc);
+
+/* Identifier Functions */
+void m_stack(stack_t **h, unsigned int ipn);
+void m_queue(stack_t **h, unsigned int ipn);
 
 /* Display Tasks Functions */
 void m_pall(stack_t **h, __attribute__((unused))unsigned int ipn);
@@ -78,6 +82,7 @@ void m_pstr(stack_t **h, __attribute__((unused))unsigned int ipn);
 
 /* Operation Tasks Functions */
 void m_push(char *arg);
+void m_pushq(char *arg);
 void m_pop(stack_t **h, __attribute__((unused))unsigned int ipn);
 void m_swap(stack_t **h, __attribute__((unused))unsigned int ipn);
 void m_add(stack_t **h, __attribute__((unused))unsigned int ipn);

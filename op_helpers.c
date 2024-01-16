@@ -9,7 +9,7 @@
 
 void m_push(char *arg)
 {
-	if (!check_input(arg))
+	if (!verify_input(arg))
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", driver.ipn);
 		clean_up();

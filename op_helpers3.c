@@ -58,3 +58,47 @@ void m_queue(stack_t **h, unsigned int ipn)
 	(void)ipn;
 	driver.is_queue = true;
 }
+
+/**
+ * m_pushq - add element to queue.
+ * @arg: The given data.
+ *
+ * Return: Void.
+ */
+
+void m_pushq(char *arg)
+{
+	stack_t *node, *pos;
+	int data;
+
+	if (!verify_input(arg))
+	{
+		fprintf(stderr, "L%u: usage: push integer\n", driver.ipn);
+		clean_up();
+		exit(EXIT_FAILURE);
+	}
+
+	data = atoi(arg);
+	node = malloc(sizeof(stack_t));
+	if (!node)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		clean_up();
+		exit(EXIT_FAILURE);
+	}
+	pos = driver.stack;
+	node->n = data;
+	node->next = NULL;
+	if (!pos)
+	{
+		node->prev = NULL;
+		driver.stack = node;
+		return;
+	}
+	while (pos->next)
+	{
+		pos = pos->next;
+	}
+	pos->next = node;
+	node->prev = pos;
+}
