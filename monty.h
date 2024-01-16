@@ -78,5 +78,11 @@ void m_pint(stack_t **h, __attribute__((unused))unsigned int ipn);
 void m_push(char *arg);
 void m_pop(stack_t **h, __attribute__((unused))unsigned int ipn);
 void m_swap(stack_t **h, __attribute__((unused))unsigned int ipn);
+void m_add(stack_t **h, __attribute__((unused))unsigned int ipn);
+void m_nop(stack_t **h, __attribute__((unused))unsigned int ipn);
+void m_sub(stack_t **h, __attribute__((unused))unsigned int ipn);
+void m_div(stack_t **h, __attribute__((unused))unsigned int ipn);
+void m_mul(stack_t **h, __attribute__((unused))unsigned int ipn);
+void m_mod(stack_t **h, __attribute__((unused))unsigned int ipn);
 
 #endif /* _MONTY_H_ */
