@@ -66,8 +66,17 @@ extern driver_t driver;
 bool check_input(char *line);
 void init_driver(void);
 void clean_up(void);
-void clean_stack(stack_t stack);
+void clean_stack(stack_t *h);
 void read_input(void);
-void exec_opc(stack_t **stack, char *opc);
+void exec_opc(stack_t **h, char *opc);
+
+/* Display Tasks Functions */
+void m_pall(stack_t **h, __attribute__((unused))unsigned int ipn);
+void m_pint(stack_t **h, __attribute__((unused))unsigned int ipn);
+
+/* Operation Tasks Functions */
+void m_push(char *arg);
+void m_pop(stack_t **h, __attribute__((unused))unsigned int ipn);
+void m_swap(stack_t **h, __attribute__((unused))unsigned int ipn);
 
 #endif /* _MONTY_H_ */
