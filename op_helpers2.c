@@ -11,21 +11,22 @@
 void m_sub(stack_t **h, __attribute__((unused))unsigned int ipn)
 {
 	stack_t *temp;
+	int len, data;
 
-	if (*h && (*h)->next)
+	temp = *h;
+	for (len = 0; temp != NULL; len++)
+		temp = temp->next;
+	if (len < 2)
 	{
-		(*h)->next->n -= (*h)->n;
-		temp = *h;
-		*h = (*h)->next;
-		(*h)->prev = NULL;
-		free(temp);
-	}
-	else
-	{
-		fprintf(stderr, "L%u: can't sub, stack is too short\n", driver.ipn);
+		fprintf(stderr, "L%d: can't sub, stack too short\n", driver.ipn);
 		clean_up();
 		exit(EXIT_FAILURE);
 	}
+	temp = *h;
+	data = temp->next->n - temp->n;
+	temp->next->n = data;
+	*h = temp->next;
+	free(temp);
 }
 
 /**
