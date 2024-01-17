@@ -38,7 +38,7 @@ void read_input(void)
 
 /**
  * exec_opc - call fns.
- * @stack: The pointer to the given stack.
+ * @h: The pointer to the given stack.
  * @opc: The operation to execute.
  *
  * Return: Void.
