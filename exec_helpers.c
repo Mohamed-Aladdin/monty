@@ -9,12 +9,11 @@
 void read_input(void)
 {
 	char *opc, *data;
-	ssize_t line = 1;
+	ssize_t line;
 	size_t n = 0;
 
-	while (line != -1)
+	while ((line = getline(&driver.ip, &n, driver.file) != -1))
 	{
-		line = getline(&driver.ip, &n, driver.file);
 		opc = strtok(driver.ip, " ");
 
 		if (*opc == '\n' || *opc == '#')
