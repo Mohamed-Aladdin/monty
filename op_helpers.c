@@ -95,7 +95,6 @@ void m_swap(stack_t **h, __attribute__((unused))unsigned int ipn)
 	data = temp->n;
 	temp->n = temp->next->n;
 	temp->next->n = data;
-	free(temp);
 }
 
 /**
