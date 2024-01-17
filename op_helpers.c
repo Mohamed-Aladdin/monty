@@ -76,7 +76,7 @@ void m_swap(stack_t **h, __attribute__((unused))unsigned int ipn)
 {
 	int k;
 
-	if ((*h)->next && *h)
+	if (*h && (*h)->next)
 	{
 		k = (*h)->n;
 		(*h)->n = (*h)->next->n;
