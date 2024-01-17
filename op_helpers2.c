@@ -45,7 +45,7 @@ void m_div(stack_t **h, __attribute__((unused))unsigned int ipn)
 	int len = 0, data;
 
 	temp = *h;
-	while (h)
+	while (temp)
 	{
 		temp = temp->next;
 		len++;
