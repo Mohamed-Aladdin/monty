@@ -75,13 +75,12 @@ void m_pop(stack_t **h, __attribute__((unused))unsigned int ipn)
 void m_swap(stack_t **h, __attribute__((unused))unsigned int ipn)
 {
 	int k;
-	stack_t *temp = *h;
 
-	if (temp->next && *h)
+	if ((*h)->next && *h)
 	{
-		k = temp->n;
-		temp->n = temp->next->n;
-		temp->next->n = k;
+		k = (*h)->n;
+		(*h)->n = (*h)->next->n;
+		(*h)->next->n = k;
 	}
 	else
 	{
