@@ -74,20 +74,28 @@ void m_pop(stack_t **h, __attribute__((unused))unsigned int ipn)
 
 void m_swap(stack_t **h, __attribute__((unused))unsigned int ipn)
 {
-	int k;
+	stack_t *temp;
+	int n = 0, node;
 
-	if (*h && (*h)->next)
+	temp = *h;
+	while (temp)
 	{
-		k = (*h)->n;
-		(*h)->n = (*h)->next->n;
-		(*h)->next->n = k;
+		temp = temp->next;
+		n++;
 	}
-	else
+
+	if (n < 2)
 	{
-		fprintf(stderr, "L%u: can't swap, stack is too short\n", driver.ipn);
+		fprintf(stderr, "L%d: can't swap, stack too short\n", driver.ipn);
 		clean_up();
 		exit(EXIT_FAILURE);
 	}
+
+	temp = *h;
+	node = temp->n;
+	temp->n = temp->next->n;
+	temp->next->n = node;
+	free(temp);
 }
 
 /**
@@ -101,7 +109,7 @@ void m_swap(stack_t **h, __attribute__((unused))unsigned int ipn)
 void m_add(stack_t **h, __attribute__((unused))unsigned int ipn)
 {
 	stack_t *temp;
-	int n = 0, data;
+	int n = 0, node;
 
 	temp = *h;
 	while (temp)
@@ -118,8 +126,8 @@ void m_add(stack_t **h, __attribute__((unused))unsigned int ipn)
 	}
 
 	temp = *h;
-	data = temp->n + temp->next->n;
-	temp->next->n = data;
+	node = temp->n + temp->next->n;
+	temp->next->n = node;
 	*h = temp->next;
 	free(temp);
 }
