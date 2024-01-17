@@ -16,12 +16,14 @@ void m_sub(stack_t **h, __attribute__((unused))unsigned int ipn)
 	temp = *h;
 	for (len = 0; temp != NULL; len++)
 		temp = temp->next;
+
 	if (len < 2)
 	{
 		fprintf(stderr, "L%d: can't sub, stack too short\n", driver.ipn);
 		clean_up();
 		exit(EXIT_FAILURE);
 	}
+
 	temp = *h;
 	data = temp->next->n - temp->n;
 	temp->next->n = data;
@@ -40,28 +42,34 @@ void m_sub(stack_t **h, __attribute__((unused))unsigned int ipn)
 void m_div(stack_t **h, __attribute__((unused))unsigned int ipn)
 {
 	stack_t *temp;
+	int len = 0, data;
 
-	if (!(*h)->next || !h)
+	temp = *h;
+	while (h)
 	{
-		fprintf(stderr, "L%u: can't div, stack too short\n", driver.ipn);
+		temp = temp->next;
+		len++;
+	}
+
+	if (len < 2)
+	{
+		fprintf(stderr, "L%d: can't div, stack too short\n", driver.ipn);
 		clean_up();
 		exit(EXIT_FAILURE);
 	}
-	if ((*h)->n == 0)
+
+	temp = *h;
+
+	if (temp->n == 0)
 	{
-		fprintf(stderr, "L%u: division by zero\n", driver.ipn);
+		fprintf(stderr, "L%d: division by zero\n", driver.ipn);
 		clean_up();
 		exit(EXIT_FAILURE);
 	}
-
-	if (*h && (*h)->next)
-	{
-		(*h)->next->n /= (*h)->n;
-		temp = *h;
-		*h = (*h)->next;
-		(*h)->prev = NULL;
-		free(temp);
-	}
+	data = temp->next->n / temp->n;
+	temp->next->n = data;
+	*h = temp->next;
+	free(temp);
 }
 
 /**
