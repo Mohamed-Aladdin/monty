@@ -101,23 +101,28 @@ void m_swap(stack_t **h, __attribute__((unused))unsigned int ipn)
 void m_add(stack_t **h, __attribute__((unused))unsigned int ipn)
 {
 	stack_t *temp;
+	int n = 0, data;
 
-	if ((*h)->next && *h)
+	temp = *h;
+	while (temp)
 	{
-		(*h)->next->n += (*h)->n;
-		temp = *h;
-		*h = (*h)->next;
-		(*h)->prev = NULL;
-		free(temp);
+		temp = temp->next;
+		n++;
 	}
-	else
+
+	if (n < 2)
 	{
-		fprintf(stderr, "L%u: can't add, stack is too short\n", driver.ipn);
+		fprintf(stderr, "L%d: can't add, stack too short\n", driver.ipn);
 		clean_up();
 		exit(EXIT_FAILURE);
 	}
-}
 
+	temp = *h;
+	data = temp->n + temp->next->n;
+	temp->next->n = data;
+	*h = temp->next;
+	free(temp);
+}
 /**
  * m_nop - doesn’t do anything.
  * @h: The given stack.
